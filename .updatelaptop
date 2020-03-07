@@ -1,0 +1,45 @@
+#!/bin/sh
+
+set -e
+
+UPDATE_INTERVAL=86400
+LAST_UPDATE_TIME_FILE=".last-update-time"
+LOCK_FILE=".lock"
+
+# cd to repo dir
+file_path=$0
+if [[ -h "$file_path" ]]; then
+    file_path=$(readlink $file_path)
+fi
+cd $(dirname  $file_path)
+
+# Ensure expected files exist
+touch "$LAST_UPDATE_TIME_FILE"
+
+# Read values
+last_update_time=$(cat "$LAST_UPDATE_TIME_FILE")
+
+# Make sure only one update process is running
+[[ -e $LOCK_FILE ]] && exit
+function clear_lock {
+    rm $LOCK_FILE
+}
+trap clear_lock EXIT
+touch $LOCK_FILE
+
+current_time=$(date +%s)
+time_since_last_update=$(( current_time - last_update_time ))
+
+# Skip if we updated recently
+[[ $time_since_last_update -lt $UPDATE_INTERVAL ]] && exit
+
+# Update the repo
+git pull
+git submodule init
+git submodule update
+
+# Run the update
+python3 update.py
+
+# Update the last updated time
+echo "$current_time" > "$LAST_UPDATE_TIME_FILE"

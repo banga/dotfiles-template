@@ -1,0 +1,62 @@
+
+div.diff,
+div.title_text {
+    font-family: JetBrains Mono, Menlo, monospace;
+}
+
+div.diff {
+    font-size: 11px;
+    line-height: 20px;
+    padding-left: 4px;
+}
+
+div.diff.rem {
+    color: #000;
+    background-color: #ffeef0 !important;
+}
+
+div.diff.rem span.marked {
+    background-color: #fdb8c0 !important;
+}
+
+div.diff.rem::first-letter,
+div.diff.add::first-letter {
+    color: rgba(0,0,0,0.3);
+    font-size: 11px;
+}
+
+div.diff.add {
+    color: #000;
+    background-color: #e6ffed !important;
+}
+
+div.diff.add span.marked {
+    background-color: #acf2bd !important;
+}
+
+div.diff.chunk_header span.chunk_info {
+    background: none;
+}
+
+div.diff.chunk_header,
+div.diff.chunk_header a,
+div.diff.chunk_header span.section {
+    color: rgba(27,31,35,0.5);
+}
+
+div.diff.chunk_header {
+    background: #f1f8ff;
+    padding: 4px 0;
+}
+
+div.chunk_block div.new {
+    border-left: 1px solid rgb(246, 248, 250);
+}
+
+div.chunk_block div.old {
+    border-right: 1px solid rgb(246, 248, 250);
+}
+
+div.patchset {
+    border: 1px solid #ddd;
+}

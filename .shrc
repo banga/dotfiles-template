@@ -1,0 +1,10 @@
+#!/bin/sh
+
+$HOME/.updatelaptop
+
+function include () {
+    [[ -f "$1" ]] && source "$1"
+}
+
+# Machine specific
+include $HOME/.hyperlocal.shrc

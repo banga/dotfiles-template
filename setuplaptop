@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+BASEDIR=$(dirname $0)
+cd "$BASEDIR"
+
+# Install brew if needed
+which -s brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install python3 if needed
+which -s python3 || brew install python3
+
+./.updatelaptop
+
+echo """Setup complete!
+
+Now you need to:
+- Change default shell to zsh
+- Setup ssh keys
+- Sign-in to Dropbox
+- Set iTerm2 to load preferences from ~/Dropbox/iTerm2
+"""

@@ -1,0 +1,9 @@
+# Mac OS files
+.DS_Store
+
+# Update script related
+.last-update-time
+.last-update-hash
+
+# Per-machine shrc
+.hyperlocal.shrc
